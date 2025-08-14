@@ -1,0 +1,133 @@
+@use '../core/variables' as vars;
+@use '../core/mixins' as mixins;
+@use '../core/placeholders';
+@use 'sass:color';
+
+.header {
+	background-color: color.adjust(vars.$color-white, $alpha: -0.9);
+	height: 50px;
+	width: 100%;
+
+	border: {
+		bottom: {
+			width: 1px;
+			style: solid;
+			color: vars.$color-white;
+		}
+	}
+
+	.nav {
+		height: 50px;
+
+		@include mixins.d-flex(start, center);
+
+		&__title {
+			height: 100%;
+			width: 255px;
+			border-right: 1px solid vars.$color-white;
+
+			@include mixins.d-flex(center, center);
+
+			&-link {
+				font-size: 25px;
+				font-weight: 500;
+				color: vars.$color-white;
+				transition-duration: 0.2s;
+
+				span {
+					font-weight: 700;
+				}
+
+				@extend %hover-black;
+			}
+		}
+
+		&__links {
+			flex-grow: 1;
+
+			.list {
+				padding-left: min(100px, 5vw);
+
+				@include mixins.d-flex(start, center, nowrap, row, min(100px, 5vw), 0);
+
+				&__item {
+					&-link {
+						font-size: 22px;
+						font-weight: 400;
+						color: vars.$color-white;
+						transition-duration: 0.2s;
+
+						@extend %hover-black;
+					}
+				}
+			}
+
+			@media (max-width: vars.$media-lg) {
+				.list {
+					padding-left: 0;
+
+					@include mixins.d-flex(
+						center,
+						center,
+						nowrap,
+						row,
+						min(100px, 5vw),
+						0
+					);
+				}
+			}
+
+			@media (max-width: vars.$media-md) {
+				.list {
+					display: none;
+				}
+			}
+		}
+
+		.covid {
+			height: 100%;
+			padding-inline: 30px;
+			border: {
+				left: 1px solid vars.$color-white;
+				right: 1px solid vars.$color-white;
+			}
+
+			@include mixins.d-flex(center, center);
+
+			&__link {
+				font-size: 16px;
+				font-weight: 700;
+				color: vars.$color-white;
+				transition-duration: 0.2s;
+
+				@extend %hover-black;
+			}
+
+			@media (max-width: vars.$media-md) {
+				& {
+					display: none;
+				}
+			}
+		}
+
+		.globe {
+			width: 90px;
+
+			@include mixins.d-flex(center, center);
+
+			&__link {
+				&-icon {
+					width: 27px;
+					height: 28px;
+					color: vars.$color-white;
+				}
+			}
+
+			@media (max-width: vars.$media-md) {
+				& {
+					display: none;
+				}
+			}
+		}
+	}
+}
